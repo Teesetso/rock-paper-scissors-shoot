@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rock, Paper, Scissors, Shoot!</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Welcome, superstar!</p>
+        <h1>Rock, Paper, Scissors, <span>Shoot!</span></h1>
+      </div>
+      <div class="scoreboard" aria-label="Score">
+        <div><span>You</span><strong id="player-score">0</strong></div>
+        <div class="score-divider">:</div>
+        <div><span>Charlie</span><strong id="computer-score">0</strong></div>
+        <div class="round-info"><span id="round-total-label">5 rounds</span><strong id="round-number">Round 1</strong></div>
+      </div>
+    </header>
+
+    <section class="instructions" id="instructions">
+      <div class="instruction-icon">👋</div>
+      <div>
+        <strong>Make a hand sign when you see SHOOT!</strong>
+        <p>Rock ✊ &nbsp; Paper ✋ &nbsp; Scissors ✌️</p>
+      </div>
+      <button id="start-button" class="primary-button">Start game</button>
+      <button id="mute-button" class="secondary-button" aria-pressed="false">🔊 Voice on</button>
+      <button id="settings-button" class="secondary-button">⚙ Settings</button>
+      <button id="fullscreen-button" class="secondary-button">⛶ Fullscreen</button>
+    </section>
+
+    <section class="arena">
+      <div class="player-panel panel">
+        <div class="panel-heading"><span class="player-dot"></span><h2>You</h2></div>
+        <div class="camera-frame">
+          <video id="camera" autoplay playsinline muted></video>
+          <canvas id="landmarks"></canvas>
+          <div class="camera-message" id="camera-message">Camera is off</div>
+        </div>
+        <p class="choice-label" id="player-choice">Your hand will appear here</p>
+        <p class="gesture-status" id="gesture-status" data-state="waiting">● Show one hand to begin</p>
+      </div>
+
+      <div class="versus" aria-live="polite">
+        <div class="countdown" id="countdown">Ready?</div>
+        <div class="burst">VS</div>
+        <p id="status">Press Start game to play</p>
+      </div>
+
+      <div class="computer-panel panel">
+        <div class="panel-heading"><span class="computer-dot"></span><h2>Charlie</h2></div>
+        <div class="computer-hand" id="computer-hand" aria-label="Charlie hand">🤖</div>
+        <p class="choice-label" id="computer-choice">Waiting to play</p>
+      </div>
+    </section>
+
+    <div class="progress" id="round-progress" aria-label="Round progress"></div>
+
+    <section class="manual-controls" aria-label="Manual move controls">
+      <strong>Camera having trouble?</strong>
+      <span>Choose your move:</span>
+      <button class="move-button" data-move="rock">✊ Rock</button>
+      <button class="move-button" data-move="paper">✋ Paper</button>
+      <button class="move-button" data-move="scissors">✌️ Scissors</button>
+    </section>
+
+    <section class="result-card" id="result-card" aria-live="polite">
+      <div class="result-gesture"><span>You played</span><strong id="result-player">❔</strong><b id="result-player-label">Ready?</b></div>
+      <div class="result-message" id="result-message">Make your hand sign when you see SHOOT!</div>
+      <div class="result-gesture"><span>Charlie played</span><strong id="result-computer">❔</strong><b id="result-computer-label">Waiting</b></div>
+    </section>
+
+    <section class="controls">
+      <button id="play-again-button" class="primary-button" disabled>Play again</button>
+      <button id="reset-button" class="secondary-button">Reset score</button>
+      <button id="stop-camera-button" class="secondary-button">Stop camera</button>
+    </section>
+    <section class="history-card" aria-live="polite">
+      <strong>Today with Charlie</strong>
+      <span id="history-summary">Games: 0 · You: 0 · Charlie: 0 · Draws: 0</span>
+    </section>
+    <dialog id="settings-dialog">
+      <form method="dialog" class="settings-panel">
+        <h2>Game settings</h2>
+        <label>Rounds
+          <select id="round-setting">
+            <option value="3">3 rounds</option>
+            <option value="5" selected>5 rounds</option>
+          </select>
+        </label>
+        <label class="check-row"><input type="checkbox" id="accessible-setting"> High contrast mode</label>
+        <p>Choose 3 or 5 rounds. High contrast mode makes the game easier to see.</p>
+        <button class="primary-button" value="close">Done</button>
+      </form>
+    </dialog>
+    <p class="privacy-note">Your camera is used only in this browser and is not recorded.</p>
+  </main>
+  <script type="module" src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) navigator.serviceWorker.register("service-worker.js");
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800&display=swap");
+
+:root {
+  --navy: #17345d;
+  --blue: #3b82f6;
+  --yellow: #ffd166;
+  --cream: #fffaf0;
+  --purple: #8257d8;
+  --green: #2dbb87;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--navy);
+  background: radial-gradient(circle at top left, #d9f4ff 0, transparent 38%),
+              linear-gradient(135deg, #fff8e9 0%, #f2eaff 100%);
+  font-family: "Nunito", sans-serif;
+}
+.game-shell { width: min(1180px, 94vw); margin: auto; padding: 28px 0 20px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.eyebrow { color: var(--purple); font-size: .75rem; font-weight: 800; letter-spacing: .14em; margin: 0; }
+h1, h2, p { margin-top: 0; }
+h1 { font: 800 clamp(2rem, 5vw, 4.3rem)/.95 "Baloo 2", cursive; margin: 5px 0 0; }
+h1 span { color: #ee725c; }
+.scoreboard { display: flex; align-items: center; gap: 13px; padding: 12px 18px; border-radius: 20px; background: #fff; box-shadow: 0 9px 24px #775bb31d; }
+.scoreboard div:not(.score-divider) { display: grid; text-align: center; }
+.scoreboard span { font-size: .72rem; font-weight: 800; }
+.scoreboard strong { color: var(--purple); font: 800 2rem/1 "Baloo 2"; }
+.score-divider { font-size: 1.7rem; color: #b7bfd0; }
+.round-info { display: grid; text-align: left !important; margin-left: 4px; padding-left: 12px; border-left: 2px solid #edf0f6; }
+.round-info span { color: #8490a6; }
+.round-info strong { color: var(--navy); font: 800 .9rem "Nunito"; }
+.instructions { display: flex; align-items: center; gap: 14px; margin: 28px 0; padding: 16px 20px; border: 2px solid #ffffff; border-radius: 22px; background: #ffffffb8; box-shadow: 0 8px 25px #775bb31b; }
+.instruction-icon { font-size: 2.4rem; }
+.instructions strong { font-size: 1.05rem; }
+.instructions p { margin: 3px 0 0; color: #63708a; font-weight: 700; }
+button { border: 0; border-radius: 14px; cursor: pointer; font: 800 1rem "Nunito"; transition: transform .15s, filter .15s; }
+button:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.04); }
+button:disabled { cursor: not-allowed; opacity: .5; }
+.primary-button { margin-left: auto; padding: 13px 23px; color: #fff; background: var(--purple); box-shadow: 0 5px 0 #6844b3; }
+.secondary-button { padding: 12px 20px; color: var(--navy); background: #fff; }
+.secondary-button { font-size: .88rem; }
+.arena { display: grid; grid-template-columns: 1fr 130px 1fr; align-items: center; gap: 22px; }
+.panel { padding: 18px; border: 3px solid #fff; border-radius: 28px; background: #ffffffc9; box-shadow: 0 12px 32px #775bb326; }
+.panel-heading { display: flex; align-items: center; gap: 9px; }
+.panel-heading h2 { margin: 0 0 14px; font: 800 1.6rem "Baloo 2"; }
+.player-dot, .computer-dot { width: 12px; height: 12px; margin-top: -12px; border-radius: 50%; background: var(--blue); }
+.computer-dot { background: #ee725c; }
+.camera-frame { position: relative; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 18px; background: #dfe8f4; }
+video, canvas { display: block; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+canvas { position: absolute; inset: 0; }
+.camera-message { position: absolute; inset: 0; display: grid; place-items: center; color: #73819a; font-weight: 800; }
+.choice-label { min-height: 28px; margin: 13px 0 0; text-align: center; font: 800 1.25rem "Baloo 2"; }
+.gesture-status { margin: 4px 0 0; text-align: center; color: #8490a6; font-size: .8rem; font-weight: 800; }
+.gesture-status[data-state="ready"] { color: var(--green); }
+.gesture-status[data-state="unclear"] { color: #d59b2a; }
+.manual-controls { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 9px; margin-top: 18px; padding: 12px 16px; border-radius: 18px; color: #63708a; background: #ffffffa8; font-size: .9rem; }
+.manual-controls strong { color: var(--navy); }
+.move-button { padding: 9px 13px; color: var(--navy); background: #fff; font-size: .9rem; }
+.move-button.selected { color: #fff; background: var(--green); }
+.versus { text-align: center; }
+.countdown { min-height: 34px; color: #ee725c; font: 800 1.35rem "Baloo 2"; }
+.burst { display: grid; place-items: center; width: 92px; height: 92px; margin: 8px auto; border-radius: 50%; color: #fff; background: var(--yellow); transform: rotate(-8deg); font: 800 1.8rem "Baloo 2"; box-shadow: 0 7px 0 #e5ae4c; }
+.versus p { min-height: 46px; margin: 0; color: #71809b; font-weight: 800; }
+.computer-hand { display: grid; place-items: center; min-height: 210px; font-size: clamp(7rem, 14vw, 11rem); border-radius: 20px; background: #fff8dc; }
+.computer-hand.shaking { animation: shake .42s infinite alternate; }
+@keyframes shake { from { transform: rotate(-11deg) translateY(3px); } to { transform: rotate(11deg) translateY(-3px); } }
+.result-card { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: center; gap: 16px; margin-top: 22px; padding: 14px 22px; border: 3px solid #fff; border-radius: 22px; background: #ffffffc9; box-shadow: 0 10px 25px #775bb31c; }
+.result-gesture { display: grid; justify-items: center; gap: 2px; }
+.result-gesture span { color: #8490a6; font-size: .75rem; font-weight: 800; }
+.result-gesture strong { font-size: 2.6rem; line-height: 1.1; }
+.result-gesture b { font: 800 1rem "Baloo 2"; }
+.result-message { text-align: center; color: var(--purple); font: 800 1.4rem "Baloo 2"; }
+.progress { display: flex; justify-content: center; gap: 8px; margin: 16px 0 0; }
+.progress-dot { width: 15px; height: 15px; border: 3px solid #cbd3e0; border-radius: 50%; background: #fff; }
+.progress-dot.active { border-color: var(--yellow); background: var(--yellow); }
+.progress-dot.complete { border-color: var(--green); background: var(--green); }
+.confetti { position: fixed; top: -20px; width: 10px; height: 16px; z-index: 5; animation: fall 1.2s ease-in forwards; }
+@keyframes fall { to { transform: translateY(105vh) rotate(720deg); opacity: 0; } }
+.computer-hand.happy { filter: drop-shadow(0 0 18px #ffd166); transform: scale(1.08); }
+.computer-hand.sad { filter: grayscale(.35); }
+.history-card { display: flex; justify-content: center; gap: 12px; margin-top: 14px; color: #71809b; font-size: .9rem; }
+.history-card strong { color: var(--navy); }
+dialog { border: 0; border-radius: 22px; padding: 0; color: var(--navy); box-shadow: 0 20px 70px #17345d55; }
+dialog::backdrop { background: #17345d66; }
+.settings-panel { display: grid; gap: 16px; min-width: min(340px, 80vw); padding: 26px; }
+.settings-panel h2 { margin: 0; font: 800 1.8rem "Baloo 2"; }
+.settings-panel select { display: block; width: 100%; margin-top: 6px; padding: 10px; border: 2px solid #d9deea; border-radius: 10px; font: inherit; }
+.check-row { display: flex; gap: 8px; align-items: center; }
+body.high-contrast { --navy: #071a35; --purple: #4b16a8; background: #fff; }
+body.high-contrast .panel, body.high-contrast .instructions, body.high-contrast .result-card { border-color: var(--navy); }
+.controls { display: flex; justify-content: center; gap: 12px; margin: 26px 0 8px; }
+.privacy-note { text-align: center; color: #8490a6; font-size: .8rem; }
+@media (max-width: 800px) { .topbar { align-items: flex-start; flex-direction: column; } .scoreboard { align-self: stretch; justify-content: center; } .instructions { flex-wrap: wrap; } .instructions .primary-button { margin-left: 0; } .arena { grid-template-columns: 1fr 70px 1fr; gap: 8px; } .panel { padding: 10px; } .panel-heading h2 { font-size: 1.25rem; } .computer-hand { min-height: 140px; font-size: 6rem; } .burst { width: 62px; height: 62px; font-size: 1.25rem; } .result-card { grid-template-columns: 1fr 1.2fr 1fr; padding: 12px 8px; gap: 4px; } .result-message { font-size: 1rem; } .result-gesture strong { font-size: 2rem; } .round-info { display: none !important; } .manual-controls { justify-content: flex-start; } .history-card { flex-direction: column; align-items: center; } }
