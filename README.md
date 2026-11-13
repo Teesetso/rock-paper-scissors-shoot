@@ -291,3 +291,5 @@ Possible next improvements include:
 - Offline bundling of the MediaPipe browser resources
 - A dedicated desktop or mobile application
 - More accessibility options and language support
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/6e106ddc-1cf4-45bb-9369-705051afbe75" />
+
